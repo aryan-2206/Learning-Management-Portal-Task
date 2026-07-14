@@ -133,22 +133,63 @@ The application will be running at `http://localhost:5173`.
 - `GET /api/enroll/my-courses` - Get enrolled courses for student
 - `POST /api/progress` - Mark a lesson as complete
 
+## Live Demo
+
+| Service | URL |
+|---|---|
+| 🌐 **Frontend** (Vercel) | https://learning-management-portal-task.vercel.app |
+| ⚙️ **Backend API** (Render) | https://learning-management-portal-task.onrender.com |
+
 ## Deployment Instructions
 
 ### Frontend (Vercel)
+
 1. Push the repository to GitHub.
-2. Go to Vercel and import the repository.
-3. Set the Root Directory to `client`.
-4. Add the `VITE_API_URL` environment variable pointing to your deployed backend.
-5. Deploy.
+2. Go to [Vercel](https://vercel.com) → **Add New Project** → Import repository.
+3. Set the **Root Directory** to `client`.
+4. Under **Environment Variables**, add:
+
+   | Variable | Value |
+   |---|---|
+   | `VITE_API_URL` | `https://<your-render-app>.onrender.com/api` |
+
+5. Click **Deploy**.
+6. Add a `vercel.json` inside the `client/` folder for SPA client-side routing support:
+   ```json
+   {
+     "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+   }
+   ```
+   *(Already included in this repo.)*
+
+> ⚠️ **Important:** Vite embeds `VITE_*` env vars at **build time**. After adding or changing `VITE_API_URL` on Vercel, you must **trigger a redeploy** for the change to take effect.
+
+---
 
 ### Backend (Render)
-1. Go to Render and create a new Web Service.
+
+1. Go to [Render](https://render.com) → **New Web Service**.
 2. Connect your GitHub repository.
-3. Set the Root Directory to `server`.
-4. Set the Build Command to `npm install` and Start Command to `npm start`.
-5. Add all Environment Variables (`MONGODB_URI`, `JWT_SECRET`, etc.).
-6. Deploy.
+3. Set the **Root Directory** to `server`.
+4. Set **Build Command** to `npm install` and **Start Command** to `npm start`.
+5. Under **Environment Variables**, add **all** of the following:
+
+   | Variable | Value |
+   |---|---|
+   | `PORT` | `5000` |
+   | `MONGODB_URI` | Your MongoDB Atlas connection string |
+   | `JWT_SECRET` | A strong secret string |
+   | `JWT_EXPIRE` | `30d` |
+   | `NODE_ENV` | `production` |
+   | `FRONTEND_URL` | `https://<your-vercel-app>.vercel.app` |
+
+6. Click **Create Web Service**.
+
+> ⚠️ **Important:** Render runs behind a reverse proxy. The server is already configured with `app.set('trust proxy', 1)` — this is required for `secure: true` cookies to work correctly over HTTPS.
+
+> ⚠️ **Note on Cross-Origin Cookies:** Since the frontend (Vercel) and backend (Render) are on different domains, auth cookies are set with `sameSite: 'none'` and `secure: true` in production. This is already handled in the codebase.
+
+---
 
 ## Future Improvements
 
