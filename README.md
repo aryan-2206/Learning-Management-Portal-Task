@@ -3,10 +3,13 @@
 ## Candidate Details
 
 - **Name:** Aryan Doshi
+- **Email:** aryandoshi22@gmail.com
+- **Phone Number:** 9987453342
 - **Position Applied:** Full Stack Intern
-- **Organization:** Amaanatvam Foundation
-- **Round:** Round 2 – Task-Based Evaluation
+- **Organization:** Amaanitvam Foundation
 - **Task:** Learning Management System
+- **Deployed Links:** Frontend: [https://learning-management-portal-task.vercel.app/](https://learning-management-portal-task.vercel.app/)  Backend: [https://learning-management-portal-task.onrender.com/](https://learning-management-portal-task.onrender.com/)
+
 ---
 
 # LearnSphere – Learning Management System
@@ -137,8 +140,8 @@ The application will be running at `http://localhost:5173`.
 
 | Service | URL |
 |---|---|
-| 🌐 **Frontend** (Vercel) | https://learning-management-portal-task.vercel.app |
-| ⚙️ **Backend API** (Render) | https://learning-management-portal-task.onrender.com |
+| **Frontend** (Vercel) | https://learning-management-portal-task.vercel.app |
+| **Backend API** (Render) | https://learning-management-portal-task.onrender.com |
 
 ## Deployment Instructions
 
@@ -162,7 +165,7 @@ The application will be running at `http://localhost:5173`.
    ```
    *(Already included in this repo.)*
 
-> ⚠️ **Important:** Vite embeds `VITE_*` env vars at **build time**. After adding or changing `VITE_API_URL` on Vercel, you must **trigger a redeploy** for the change to take effect.
+> **Important:** Vite embeds `VITE_*` env vars at **build time**. After adding or changing `VITE_API_URL` on Vercel, you must **trigger a redeploy** for the change to take effect.
 
 ---
 
@@ -185,9 +188,9 @@ The application will be running at `http://localhost:5173`.
 
 6. Click **Create Web Service**.
 
-> ⚠️ **Important:** Render runs behind a reverse proxy. The server is already configured with `app.set('trust proxy', 1)` — this is required for `secure: true` cookies to work correctly over HTTPS.
+> **Important:** Render runs behind a reverse proxy. The server is already configured with `app.set('trust proxy', 1)` — this is required for `secure: true` cookies to work correctly over HTTPS.
 
-> ⚠️ **Note on Cross-Origin Cookies:** Since the frontend (Vercel) and backend (Render) are on different domains, auth cookies are set with `sameSite: 'none'` and `secure: true` in production. This is already handled in the codebase.
+> **Note on Cross-Origin Cookies:** Since the frontend (Vercel) and backend (Render) are on different domains, auth cookies are set with `sameSite: 'none'` and `secure: true` in production. This is already handled in the codebase.
 
 ---
 
