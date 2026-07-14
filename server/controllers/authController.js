@@ -14,12 +14,10 @@ const sendTokenResponse = (user, statusCode, res) => {
     expires: new Date(
       Date.now() + 30 * 24 * 60 * 60 * 1000 // 30 days
     ),
-    httpOnly: true
+    httpOnly: true,
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    secure: process.env.NODE_ENV === 'production'
   };
-
-  if (process.env.NODE_ENV === 'production') {
-    options.secure = true;
-  }
 
   res
     .status(statusCode)
@@ -88,7 +86,9 @@ export const login = asyncHandler(async (req, res, next) => {
 export const logout = asyncHandler(async (req, res, next) => {
   res.cookie('token', 'none', {
     expires: new Date(Date.now() + 10 * 1000),
-    httpOnly: true
+    httpOnly: true,
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    secure: process.env.NODE_ENV === 'production'
   });
 
   res.status(200).json({
